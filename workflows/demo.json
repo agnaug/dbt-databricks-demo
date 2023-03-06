@@ -1,0 +1,149 @@
+{
+    "name": "demo-dbt-workflow",
+    "email_notifications": {
+        "no_alert_for_skipped_runs": false
+    },
+    "webhook_notifications": {},
+    "timeout_seconds": 0,
+    "max_concurrent_runs": 1,
+    "tasks": [
+        {
+            "task_key": "dbt_demo_default_profile",
+            "depends_on": [
+                {
+                    "task_key": "pre_dbt"
+                }
+            ],
+            "dbt_task": {
+                "project_directory": "demo",
+                "commands": [
+                    "dbt deps",
+                    "dbt debug",
+                    "dbt run-operation --args '{variable_name: DBT_ACCESS_TOKEN}' debug_env_var"
+                ],
+                "schema": "dbt_demo",
+                "warehouse_id": "<YOUR_WAREHOUSE_ID>",
+                "catalog": "<YOUR_CATALOG_NAME>"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "libraries": [
+                {
+                    "pypi": {
+                        "package": "dbt-databricks>=1.0.0,<2.0.0"
+                    }
+                }
+            ],
+            "timeout_seconds": 0,
+            "email_notifications": {}
+        },
+        {
+            "task_key": "post_dbt_profile",
+            "depends_on": [
+                {
+                    "task_key": "dbt_demo_default_profile"
+                }
+            ],
+            "notebook_task": {
+                "notebook_path": "notebooks/check_profiles",
+                "source": "GIT"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "timeout_seconds": 0,
+            "email_notifications": {}
+        },
+        {
+            "task_key": "pre_dbt",
+            "notebook_task": {
+                "notebook_path": "notebooks/check_env_vars",
+                "source": "GIT"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "timeout_seconds": 0,
+            "email_notifications": {}
+        },
+        {
+            "task_key": "dbt_demo_custom_profile",
+            "depends_on": [
+                {
+                    "task_key": "pre_dbt"
+                }
+            ],
+            "dbt_task": {
+                "project_directory": "demo",
+                "commands": [
+                    "dbt deps",
+                    "dbt debug --profiles-dir profiles/demo"
+                ],
+                "profiles_directory": "profiles/demo"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "libraries": [
+                {
+                    "pypi": {
+                        "package": "dbt-databricks>=1.0.0,<2.0.0"
+                    }
+                }
+            ],
+            "timeout_seconds": 0,
+            "email_notifications": {}
+        },
+        {
+            "task_key": "post_dbt_env_vars",
+            "depends_on": [
+                {
+                    "task_key": "dbt_demo_custom_profile"
+                }
+            ],
+            "notebook_task": {
+                "notebook_path": "notebooks/check_env_vars",
+                "source": "GIT"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "timeout_seconds": 0,
+            "email_notifications": {}
+        }
+    ],
+    "job_clusters": [
+        {
+            "job_cluster_key": "dbt_CLI",
+            "new_cluster": {
+                "cluster_name": "",
+                "spark_version": "11.3.x-scala2.12",
+                "spark_conf": {
+                    "spark.master": "local[*, 4]",
+                    "spark.databricks.cluster.profile": "singleNode"
+                },
+                "aws_attributes": {
+                    "first_on_demand": 1,
+                    "availability": "SPOT_WITH_FALLBACK",
+                    "spot_bid_price_percent": 100,
+                    "ebs_volume_type": "GENERAL_PURPOSE_SSD",
+                    "ebs_volume_count": 3,
+                    "ebs_volume_size": 100
+                },
+                "node_type_id": "m4.large",
+                "driver_node_type_id": "m4.large",
+                "custom_tags": {
+                    "ResourceClass": "SingleNode"
+                },
+                "spark_env_vars": {
+                    "HOST": "<YOUR_DATABRICKS_HOST>",
+                    "CATALOG": "<YOUR_CATALOG_NAME>",
+                    "HTTP_PATH": "<YOUR_WAREHOUSE_HOST>",
+                    "PYSPARK_PYTHON": "/databricks/python3/bin/python3",
+                    "DBT_ACCESS_TOKEN": "<YOUR_PAT>"
+                },
+                "enable_elastic_disk": false,
+                "data_security_mode": "SINGLE_USER",
+                "runtime_engine": "STANDARD",
+                "num_workers": 0
+            }
+        }
+    ],
+    "git_source": {
+        "git_url": "<YOUR_REPO_PATH>",
+        "git_provider": "<YOUR_REPO_TYPE>",
+        "git_branch": "<YOUR_BRANCH_NAME>"
+    },
+    "format": "MULTI_TASK"
+}
