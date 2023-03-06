@@ -26,3 +26,55 @@ Happy modeling!
 
 [0m00:22:13.468141 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b20ac0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b20bb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b208b0>]}
 [0m00:22:13.469291 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2023-03-06 00:27:33.802415 | d04f1a2c-0853-4686-8afd-412ff6c2afc4 ==============================
+[0m00:27:33.802415 [info ] [MainThread]: Running with dbt=1.4.4
+[0m00:27:33.803308 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/agnieszka.augustyniak/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'config_dir': False, 'which': 'debug', 'indirect_selection': 'eager'}
+[0m00:27:33.803436 [debug] [MainThread]: Tracking: tracking
+[0m00:27:33.816527 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1066eb400>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1066c0100>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1066d9c40>]}
+[0m00:27:34.441839 [debug] [MainThread]: Executing "git --help"
+[0m00:27:34.464831 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m00:27:34.465322 [debug] [MainThread]: STDERR: "b''"
+[0m00:27:34.941107 [debug] [MainThread]: Acquiring new databricks connection 'debug'
+[0m00:27:34.941809 [debug] [MainThread]: Using databricks connection "debug"
+[0m00:27:34.942137 [debug] [MainThread]: On debug: select 1 as id
+[0m00:27:34.942347 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:27:35.991550 [debug] [MainThread]: Databricks adapter: <class 'databricks.sql.exc.RequestError'>: Error during request to server
+[0m00:27:35.991777 [debug] [MainThread]: Databricks adapter: attempt: 1/30
+[0m00:27:35.991893 [debug] [MainThread]: Databricks adapter: bounded-retry-delay: None
+[0m00:27:35.991994 [debug] [MainThread]: Databricks adapter: elapsed-seconds: 1.0110762119293213/900.0
+[0m00:27:35.992091 [debug] [MainThread]: Databricks adapter: error-message: 
+[0m00:27:35.992184 [debug] [MainThread]: Databricks adapter: http-code: 404
+[0m00:27:35.992273 [debug] [MainThread]: Databricks adapter: method: OpenSession
+[0m00:27:35.992365 [debug] [MainThread]: Databricks adapter: no-retry-reason: non-retryable error
+[0m00:27:35.992453 [debug] [MainThread]: Databricks adapter: original-exception: 
+[0m00:27:35.992540 [debug] [MainThread]: Databricks adapter: query-id: None
+[0m00:27:35.992626 [debug] [MainThread]: Databricks adapter: session-id: None
+[0m00:27:35.992783 [debug] [MainThread]: Databricks adapter: Error while running:
+select 1 as id
+[0m00:27:35.993075 [debug] [MainThread]: Databricks adapter: Database Error
+  Error during request to server
+[0m00:27:35.993263 [debug] [MainThread]: On debug: No close available on handle
+[0m00:27:35.993512 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x123d80820>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x123da5b50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x123da5220>]}
+[0m00:27:35.993718 [debug] [MainThread]: Flushing usage events
+[0m00:27:37.104132 [debug] [MainThread]: Connection 'debug' was properly closed.
+
+
+============================== 2023-03-06 00:29:56.156054 | 8f0154e3-2a87-4493-b988-4dea64653d0e ==============================
+[0m00:29:56.156054 [info ] [MainThread]: Running with dbt=1.4.4
+[0m00:29:56.156973 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/agnieszka.augustyniak/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'config_dir': False, 'which': 'debug', 'indirect_selection': 'eager'}
+[0m00:29:56.157114 [debug] [MainThread]: Tracking: tracking
+[0m00:29:56.174294 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1065b7370>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10658bd60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1065a41c0>]}
+[0m00:29:56.710653 [debug] [MainThread]: Executing "git --help"
+[0m00:29:56.739596 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m00:29:56.739943 [debug] [MainThread]: STDERR: "b''"
+[0m00:29:56.745238 [debug] [MainThread]: Acquiring new databricks connection 'debug'
+[0m00:29:56.745684 [debug] [MainThread]: Using databricks connection "debug"
+[0m00:29:56.745927 [debug] [MainThread]: On debug: select 1 as id
+[0m00:29:56.746085 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m00:29:59.037899 [debug] [MainThread]: SQL status: OK in 2.29 seconds
+[0m00:29:59.040573 [debug] [MainThread]: On debug: Close
+[0m00:29:59.971261 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x127754070>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x127786790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x127786c70>]}
+[0m00:29:59.972709 [debug] [MainThread]: Flushing usage events
+[0m00:30:01.110154 [debug] [MainThread]: Connection 'debug' was properly closed.
