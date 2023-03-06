@@ -1,0 +1,5 @@
+# Databricks notebook source
+%sh 
+
+echo 'dbt tasks generated profiles.yml'
+ls /tmp | grep tmp-dbt-run

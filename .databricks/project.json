@@ -1,0 +1,5 @@
+{
+  "host": "https://e2-demo-field-eng.cloud.databricks.com/",
+  "authType": "profile",
+  "profile": "demo"
+}
