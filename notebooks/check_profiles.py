@@ -2,4 +2,4 @@
 %sh 
 
 echo 'dbt tasks generated profiles.yml'
-cat /tmp/*/demo/profiles.yml
+cat /tmp/tmp-dbt-run-*/profiles.yml
