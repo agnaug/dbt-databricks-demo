@@ -1,0 +1,13 @@
+demo:
+  outputs:
+    dev:
+      # these must be specified manually - cluster configuration
+      catalog: "{{ env_var('CATALOG') }}"
+      host: "{{ env_var('HOST') }}"
+      http_path: "{{ env_var('HTTP_PATH') }}"
+      schema: dbt_demo
+      threads: 1
+      # this should be auto-generated inside databricks dbt task
+      token: "{{ env_var('PAT_TOKEN') }}"
+      type: databricks
+  target: dev
