@@ -131,7 +131,8 @@
                     "CATALOG": "<YOUR_CATALOG_NAME>",
                     "HTTP_PATH": "<YOUR_WAREHOUSE_HOST>",
                     "PYSPARK_PYTHON": "/databricks/python3/bin/python3",
-                    "DBT_ACCESS_TOKEN": "<YOUR_PAT>"
+                    "DBT_ACCESS_TOKEN": "<YOUR_PAT>",
+                    "PAT_TOKEN": "<YOUR_PAT>"
                 },
                 "enable_elastic_disk": false,
                 "data_security_mode": "SINGLE_USER",
