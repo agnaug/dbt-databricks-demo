@@ -101,6 +101,46 @@
             "job_cluster_key": "dbt_CLI",
             "timeout_seconds": 0,
             "email_notifications": {}
+        },
+        {
+            "task_key": "dbt_demo_custom_profile_pat",
+            "depends_on": [
+                {
+                    "task_key": "pre_dbt"
+                }
+            ],
+            "dbt_task": {
+                "project_directory": "demo",
+                "commands": [
+                    "dbt deps"
+                ],
+                "profiles_directory": "profiles/pat"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "libraries": [
+                {
+                    "pypi": {
+                        "package": "dbt-databricks>=1.0.0,<2.0.0"
+                    }
+                }
+            ],
+            "timeout_seconds": 0,
+            "email_notifications": {}
+        },
+        {
+            "task_key": "post_dbt_pat",
+            "depends_on": [
+                {
+                    "task_key": "dbt_demo_custom_profile_pat"
+                }
+            ],
+            "notebook_task": {
+                "notebook_path": "notebooks/check_env_vars",
+                "source": "GIT"
+            },
+            "job_cluster_key": "dbt_CLI",
+            "timeout_seconds": 0,
+            "email_notifications": {}
         }
     ],
     "job_clusters": [
