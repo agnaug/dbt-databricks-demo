@@ -32,3 +32,8 @@ Make sure you have databricks-cli configured and create a new workflow as follow
 ```sh
 databricks --profile <profile_name> job create --json-file workflows/demo.json
 ```
+
+--- 
+This is a sample workflow and show different ways of interacting with Databricks SQL warehouses from workflows:
+
+![dbt](img/workflow.png)
