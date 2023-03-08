@@ -1,5 +1,5 @@
 {
-    "name": "demo-dbt-workflow",
+    "name": "dbt-demo workflow - default profile",
     "email_notifications": {
         "no_alert_for_skipped_runs": false
     },
@@ -8,7 +8,7 @@
     "max_concurrent_runs": 1,
     "tasks": [
         {
-            "task_key": "dbt_demo_default_profile",
+            "task_key": "dbt",
             "depends_on": [
                 {
                     "task_key": "pre_dbt"
@@ -22,8 +22,8 @@
                     "dbt run-operation --args '{variable_name: DBT_ACCESS_TOKEN}' debug_env_var"
                 ],
                 "schema": "dbt_demo",
-                "warehouse_id": "<YOUR_WAREHOUSE_ID>",
-                "catalog": "<YOUR_CATALOG_NAME>"
+                "warehouse_id": "WAREHOUSE_ID",
+                "catalog": "catalog_name"
             },
             "job_cluster_key": "dbt_CLI",
             "libraries": [
@@ -37,10 +37,10 @@
             "email_notifications": {}
         },
         {
-            "task_key": "post_dbt_profile",
+            "task_key": "profiles",
             "depends_on": [
                 {
-                    "task_key": "dbt_demo_default_profile"
+                    "task_key": "dbt"
                 }
             ],
             "notebook_task": {
@@ -62,76 +62,10 @@
             "email_notifications": {}
         },
         {
-            "task_key": "dbt_demo_custom_profile",
+            "task_key": "env_vars",
             "depends_on": [
                 {
-                    "task_key": "pre_dbt"
-                }
-            ],
-            "dbt_task": {
-                "project_directory": "demo",
-                "commands": [
-                    "dbt deps",
-                    "dbt debug --profiles-dir profiles/demo"
-                ],
-                "profiles_directory": "profiles/demo"
-            },
-            "job_cluster_key": "dbt_CLI",
-            "libraries": [
-                {
-                    "pypi": {
-                        "package": "dbt-databricks>=1.0.0,<2.0.0"
-                    }
-                }
-            ],
-            "timeout_seconds": 0,
-            "email_notifications": {}
-        },
-        {
-            "task_key": "post_dbt_env_vars",
-            "depends_on": [
-                {
-                    "task_key": "dbt_demo_custom_profile"
-                }
-            ],
-            "notebook_task": {
-                "notebook_path": "notebooks/check_env_vars",
-                "source": "GIT"
-            },
-            "job_cluster_key": "dbt_CLI",
-            "timeout_seconds": 0,
-            "email_notifications": {}
-        },
-        {
-            "task_key": "dbt_demo_custom_profile_pat",
-            "depends_on": [
-                {
-                    "task_key": "pre_dbt"
-                }
-            ],
-            "dbt_task": {
-                "project_directory": "demo",
-                "commands": [
-                    "dbt deps"
-                ],
-                "profiles_directory": "profiles/pat"
-            },
-            "job_cluster_key": "dbt_CLI",
-            "libraries": [
-                {
-                    "pypi": {
-                        "package": "dbt-databricks>=1.0.0,<2.0.0"
-                    }
-                }
-            ],
-            "timeout_seconds": 0,
-            "email_notifications": {}
-        },
-        {
-            "task_key": "post_dbt_pat",
-            "depends_on": [
-                {
-                    "task_key": "dbt_demo_custom_profile_pat"
+                    "task_key": "dbt"
                 }
             ],
             "notebook_task": {
@@ -156,6 +90,7 @@
                 "aws_attributes": {
                     "first_on_demand": 1,
                     "availability": "SPOT_WITH_FALLBACK",
+                    "zone_id": "us-west-2a",
                     "spot_bid_price_percent": 100,
                     "ebs_volume_type": "GENERAL_PURPOSE_SSD",
                     "ebs_volume_count": 3,
@@ -167,12 +102,11 @@
                     "ResourceClass": "SingleNode"
                 },
                 "spark_env_vars": {
-                    "HOST": "<YOUR_DATABRICKS_HOST>",
-                    "CATALOG": "<YOUR_CATALOG_NAME>",
-                    "HTTP_PATH": "<YOUR_WAREHOUSE_HOST>",
-                    "PYSPARK_PYTHON": "/databricks/python3/bin/python3",
-                    "DBT_ACCESS_TOKEN": "<YOUR_PAT>",
-                    "PAT_TOKEN": "<YOUR_PAT>"
+                    "HOST": "YOUR_HOST",
+                    "CATALOG": "YOUR_CATALOG",
+                    "HTTP_PATH": "YOUR_HTTP_PATH",
+                    "DBT_ACCESS_TOKEN": "YOUR_PAT_TOKEN",
+                    "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
                 },
                 "enable_elastic_disk": false,
                 "data_security_mode": "SINGLE_USER",
@@ -182,9 +116,9 @@
         }
     ],
     "git_source": {
-        "git_url": "<YOUR_REPO_PATH>",
-        "git_provider": "<YOUR_REPO_TYPE>",
-        "git_branch": "<YOUR_BRANCH_NAME>"
+        "git_url": "YOUR_GIT_URL",
+        "git_provider": "YOUR_GIT_PROVIDER",
+        "git_branch": "YOUR_BRANCH"
     },
     "format": "MULTI_TASK"
 }
